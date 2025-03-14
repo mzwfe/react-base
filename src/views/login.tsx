@@ -26,7 +26,7 @@ function Login() {
   };
 
   return (
-    <div className="container" style={{ height: "100%", padding: "180px", display: "flex", justifyContent: "center" }}>
+    <div className="container" style={{ boxSizing: 'border-box',height: "100%", padding: "180px", display: "flex", justifyContent: "center" }}>
       <Form ref={formRef} name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} style={{ maxWidth: 600 }} initialValues={{ remember: true }} autoComplete="off">
         <Form.Item<FieldType> label="Username" name="username" rules={[{ required: true, message: "Please input your username!" }]}>
           <Input value={username} onChange={(e) => setUsername(e.target.value)} />
