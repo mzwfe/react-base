@@ -12,13 +12,22 @@ export function RouterBeforeEach({ children }: { children?: React.ReactNode }) {
   const currentRouter = getCurrentRouterMap(routes, location.pathname);
 
   useEffect(() => {
-    if (userInfo?.id) {
-      // 判断权限
-    } else {
-      // 没有id, 先尝试获取当前用户信息, 成功放行, 不成功跳转登录页
-      getCurrentInfo().catch(() => {
-        navigate("/login");
-      });
+
+    if (currentRouter.path === '/login') {
+      return;
+    }
+
+    else {
+
+      if (userInfo?.id) {
+        // 判断权限
+        return
+      } else {
+        // 没有id, 先尝试获取当前用户信息, 成功放行, 不成功跳转登录页
+        getCurrentInfo().catch(() => {
+          navigate("/login");
+        });
+      }
     }
   }, [userInfo?.id, currentRouter.path, navigate, getCurrentInfo]);
   return children;
