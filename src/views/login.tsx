@@ -1,7 +1,6 @@
 import { Button, Form, FormInstance, Input } from "antd";
 import { createRef, useState } from "react";
 import { useNavigate } from "react-router";
-import { loginXHR } from "../service";
 import { useUserInfoStore } from "../stores/userStore";
 
 type FieldType = {
@@ -15,12 +14,11 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const formRef = createRef<FormInstance>();
-  const setUserInfo = useUserInfoStore((state) => state.setUserInfo);
+  const fetchUserInfo = useUserInfoStore((state) => state.fetchUserInfo);
   const login = async () => {
     await formRef.current?.validateFields();
     try {
-      const res = await loginXHR(username, password);
-      setUserInfo(res);
+      await fetchUserInfo(username, password);
       navigate("/list");
     } catch (error) {
       alert(error);
