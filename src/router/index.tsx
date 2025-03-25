@@ -8,9 +8,12 @@ import User from "../views/user.tsx";
 // 全局路由配置
 const routes: RouteObject[] = [
   {
+    path: "/",
+  },
+  {
     path: "/login",
     element: <Login />,
-    action: true
+    action: true,
   },
   {
     element: <MyLayout />,
@@ -18,7 +21,6 @@ const routes: RouteObject[] = [
       {
         path: "/list",
         element: <List />,
-        
       },
       {
         path: "/user",
